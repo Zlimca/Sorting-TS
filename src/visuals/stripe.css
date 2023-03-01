@@ -1,0 +1,14 @@
+.stripe {
+    background-color: white;
+    border-color: blueviolet;
+    width: 1rem;
+    margin: .01rem;
+    border-width: .15rem;
+    border-style: solid;
+    
+    bottom: 0;
+}
+
+.stripe-box {
+    display: flex;
+}
