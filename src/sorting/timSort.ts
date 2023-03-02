@@ -44,7 +44,6 @@ export async function timSort(arr: number[], setStripes: React.Dispatch<React.Se
             // arr[mid+1....right]
             if (mid < right) {
                 await merge(arr, left, mid, right, setStripes, setComparisons);
-                await delay(() => setStripes([...arr]))
             }
             setStripes([...arr])
         }
