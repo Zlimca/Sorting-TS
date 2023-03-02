@@ -1,12 +1,15 @@
+@keyframes change-color {
+
+    0%,
+    100% {
+        background-color: darkgray;
+    }
+}
+
 .stripe {
-    background-color: white;
-    border-color: blueviolet;
-    width: 1rem;
-    margin: .01rem;
-    border-width: .15rem;
-    border-style: solid;
-    
+    background-color: lightslategray;
     bottom: 0;
+    animation: change-color .1s;
 }
 
 .stripe-box {

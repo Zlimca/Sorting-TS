@@ -1,4 +1,4 @@
-import { delay, updateState } from "../utils/tools"
+import { delay } from "../utils/tools"
 
 /*
 01. Start with an array of unsorted numbers
@@ -12,18 +12,18 @@ import { delay, updateState } from "../utils/tools"
 09. If “sorted” is false, the array is now sorted and the function will return the sorted array
 10. Call the “bubbleSort” function with the initial unsorted array and its length as parameters to begin the sorting process.
 */
-export async function bubbleSort(arr: number[], setStripes: React.Dispatch<React.SetStateAction<number[]>>) {
+export async function bubbleSort(arr: number[], setStripes: React.Dispatch<React.SetStateAction<number[]>>, setComparisons: React.Dispatch<React.SetStateAction<number>>) {
     let sorted: boolean = true
     while (sorted) {
         sorted = false
         for (let i = 0; i < arr.length; i++) {
+            setComparisons(prev => ++prev);
             if (arr[i] > arr[i + 1]) {
                 [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
-                updateState(i, i + 1, setStripes)
-                await delay(0)
+                await delay(() => setStripes([...arr]))
                 sorted = true
             }
         }
     }
-    return arr
+    setStripes([...arr])
 }

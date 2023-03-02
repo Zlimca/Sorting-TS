@@ -1,11 +1,12 @@
-export function delay(ms: number): Promise<unknown> {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
+const updateDelay = 1000 / 60;
+let lastMs = 0;
 
-export function updateState(i: number, j: number, setStripes: React.Dispatch<React.SetStateAction<number[]>>) {
-    setStripes(prev => {
-        const newStripes: number[] = [...prev];
-        [newStripes[i], newStripes[j]] = [prev[j], prev[i]]
-        return newStripes
-    })
+export function delay(func: () => void): Promise<unknown> {
+    const currentMs = Date.now();
+    if (lastMs + updateDelay < currentMs) {
+        lastMs = currentMs;
+        func();
+        return new Promise(resolve => setTimeout(resolve, 0))
+    }
+    return Promise.resolve();
 }
